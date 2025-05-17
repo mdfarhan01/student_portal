@@ -4,17 +4,44 @@
 // print_r($_POST);
 // echo '</pre>';
 
-$student_id = !empty($_POST['student_id']) ? $_POST['student_id'] : null;
-$student_name = !empty($_POST['student_name']) ? $_POST['student_name'] : null;
-$email = !empty($_POST['email']) ? $_POST['email'] : null;
-$phone = !empty($_POST['phone']) ? $_POST['phone'] : null;
-$date_of_birth = !empty($_POST['date_of_birth']) ? $_POST['date_of_birth'] : null;
-$gender = !empty($_POST['gender']) ? $_POST['gender'] : null;
-$address = !empty($_POST['address']) ? $_POST['address'] : null;
-$department = !empty($_POST['department']) ? $_POST['department'] : null;
-$semester = !empty($_POST['semester']) ? $_POST['semester'] : null;
-$roll = !empty($_POST['roll']) ? $_POST['roll'] : null;
+$errors = [];
 
+
+function clean_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
+
+
+
+$student_id = !empty($_POST['student_id']) ? clean_input($_POST['student_id']) : null;
+$student_name = !empty($_POST['student_name']) ? clean_input($_POST['student_name']) : null;
+$email = !empty($_POST['email']) ? clean_input($_POST['email']) : null;
+$phone = !empty($_POST['phone']) ? clean_input($_POST['phone']) : null;
+$date_of_birth = !empty($_POST['date_of_birth']) ? clean_input($_POST['date_of_birth']) : null;
+$gender = !empty($_POST['gender']) ? clean_input($_POST['gender']) : null;
+$address = !empty($_POST['address']) ? clean_input($_POST['address']) : null;
+$department = !empty($_POST['department']) ? clean_input($_POST['department']) : null;
+$semester = !empty($_POST['semester']) ? clean_input($_POST['semester']) : null;
+$roll = !empty($_POST['roll']) ? clean_input($_POST['roll']) : null;
+
+
+if(empty('student_name')) {
+    $errors[] = "Student Name is required.";
+}
+if(empty('email')) {
+    $errors[] = "Email is required.";
+}
+
+if(empty('phone')) {
+    $errors[] = "Phone is required.";
+}
+if(empty('phone')) {
+    $errors[] = "phone is required.";
+}
 
 
 

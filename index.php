@@ -1,51 +1,69 @@
-<div class="formbold-main-wrapper">
-  <div class="formbold-form-wrapper">
-    <h1 class="heading">Student Portal</h1>
-    <form action="add_student.php" method="POST">
-      <div class="formbold-form-title">
-        <label class="formbold-form-label" for="student_id">Student ID</label>
-        <input type="text" name="student_id" id="student_id" class="formbold-form-input" />
-      </div>
-       <div class="formbold-form-title">
-        <label class="formbold-form-label" for="student_name">Student Name</label>
-        <input type="text" name="student_name" id="student_name" class="formbold-form-input" />
-      </div>
-        <div class="formbold-form-title">
-        <label class="formbold-form-label" for="email">Email Address</label>
-        <input type="text" name="email" id="email" class="formbold-form-input" />
-      </div>
-        <div class="formbold-form-title">
-        <label class="formbold-form-label" for="phone">Phone Number</label>
-        <input type="text" name="phone" id="phone" class="formbold-form-input" />
-      </div>
-        <div class="formbold-form-title">
-        <label class="formbold-form-label" for="date_of_birth">Date of Birth</label>
-        <input type="text" name="date_of_birth" id="date_of_birth" class="formbold-form-input" />
-      </div>
-        <div class="formbold-form-title">
-        <label class="formbold-form-label" for="gender">Gender</label>
-        <input type="text" name="gender" id="gender" class="formbold-form-input" />
-       <div class="formbold-form-title">
-        <label class="formbold-form-label" for="address">Address</label>
-        <input type="text" name="address" id="address" class="formbold-form-input" />
-      </div>
-      <div>
-        <div class="formbold-form-title">
-        <label class="formbold-form-label" for="department">Department</label>
-        <input type="text" name="department" id="department" class="formbold-form-input" />
-      </div>
-        <div class="formbold-form-title">
-        <label class="formbold-form-label" for="semester">Semester</label>
-        <input type="text" name="semester" id="semester" class="formbold-form-input" />
-      </div>
-        <div class="formbold-form-title">
-        <label class="formbold-form-label" for="roll">Roll</label>
-        <input type="text" name="roll" id="roll" class="formbold-form-input" />
-      </div>
-      <button type="submit" class="formbold-btn">Register Now</button>
-    </form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<?php 
+
+require_once './includes/head.php'; // Include head section with CSS and JS links
+require_once 'bd-connection.php'; // Include database connection
+
+?>
+
+
+<?php 
+
+  $is_connect = true;
+  if (!$is_connect) {
+      die("Connection failed: " . mysqli_connect_error());
+  }
+  $sql = "SELECT * FROM `student_portal`";
+  $data = $connect->query($sql);
+  $get_data = mysqli_fetch_assoc($data);
+  
+
+  echo "<pre>";
+  print_r($get_data);
+
+
+
+?>
+
+</head>
+<body class="bg-light">
+  <div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1 class="h3">📚 Student List</h1>
+      <a href="create.php" class="btn btn-primary">+ Add New Student</a>
+    </div>
+    <table class="table table-hover table-bordered bg-white shadow-sm">
+    <?php foreach($get_data as $ke => $value) : ?> 
+      <thead class="table-light">
+        <tr>
+            <th>Student Id</th>
+            <th>Student Image</th>
+            <th>Student Name</th>
+            <th>Department</th>
+            <th>Roll</th>
+            <th>Semester</th>
+            <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><?php echo $value['id']; ?></td>
+          <td><?php echo $value['student_name']; ?></td>
+          <td><?php echo $value; ?></td>
+          <td><?php echo $value; ?></td>
+          <td><?php echo $value; ?></td>
+          <td><?php echo $value; ?></td>
+          <td>
+            <a href="view.php?id=1" class="btn btn-sm btn-info">View</a>
+            <a href="edit.php?id=1" class="btn btn-sm btn-warning">Edit</a>
+            <a href="delete.php?id=1" class="btn btn-sm btn-danger">Delete</a>
+          </td>
+        </tr>
+      </tbody>
+    <?php endforeach; ?>
+    </table>
   </div>
-</div>
-
-
-<link rel="stylesheet" href="style.css"/>
+</body>
+</html>

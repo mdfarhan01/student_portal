@@ -2,13 +2,13 @@
 
 $connect = mysqli_connect("localhost","root", "", "database");
 
+$is_connect = false;
 
-if( $connect === false) {
-    die("ERROR: Could not connect. " . mysqli_connect_error());
-} else {
- echo "Connected successfully.";
-}  
 
+if (!$connect) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+ 
 
 
 ?>

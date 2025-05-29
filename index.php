@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="style.css">
 <?php 
 
 require_once './includes/head.php'; // Include head section with CSS and JS links
 require_once 'bd-connection.php'; // Include database connection
+
 
 ?>
 
@@ -17,7 +19,7 @@ require_once 'bd-connection.php'; // Include database connection
   }
   $sql = "SELECT * FROM `student_portal`";
   $data = $connect->query($sql);
-  $get_data = mysqli_fetch_assoc($data);
+  $get_data = mysqli_fetch_all($data,);
   
 
   echo "<pre>";
@@ -35,7 +37,7 @@ require_once 'bd-connection.php'; // Include database connection
       <a href="create.php" class="btn btn-primary">+ Add New Student</a>
     </div>
     <table class="table table-hover table-bordered bg-white shadow-sm">
-    <?php foreach($get_data as $ke => $value) : ?> 
+
       <thead class="table-light">
         <tr>
             <th>Student Id</th>
@@ -47,15 +49,16 @@ require_once 'bd-connection.php'; // Include database connection
             <th>Actions</th>
         </tr>
       </thead>
+      <?php foreach($data as $value) : ?> 
       <tbody>
-        <tr>
+        <tr >
           <td><?php echo $value['id']; ?></td>
+          <td><?php echo $value['student_image']; ?></td>
           <td><?php echo $value['student_name']; ?></td>
-          <td><?php echo $value; ?></td>
-          <td><?php echo $value; ?></td>
-          <td><?php echo $value; ?></td>
-          <td><?php echo $value; ?></td>
-          <td>
+          <td><?php echo $value['department']; ?></td>
+          <td><?php echo $value['roll']; ?></td>
+          <td><?php echo $value['semester']; ?></td>
+          <td class="td-hover"> 
             <a href="view.php?id=1" class="btn btn-sm btn-info">View</a>
             <a href="edit.php?id=1" class="btn btn-sm btn-warning">Edit</a>
             <a href="delete.php?id=1" class="btn btn-sm btn-danger">Delete</a>

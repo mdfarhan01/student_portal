@@ -22,8 +22,8 @@ require_once 'bd-connection.php'; // Include database connection
   $get_data = mysqli_fetch_all($data,);
   
 
-  echo "<pre>";
-  print_r($get_data);
+  // echo "<pre>";
+  // print_r($get_data);
 
 
 
@@ -49,18 +49,18 @@ require_once 'bd-connection.php'; // Include database connection
             <th>Actions</th>
         </tr>
       </thead>
-      <?php foreach($data as $value) : ?> 
+      <?php foreach($data as $students) : ?> 
       <tbody>
         <tr >
-          <td><?php echo $value['id']; ?></td>
-          <td><?php echo $value['student_image']; ?></td>
-          <td><?php echo $value['student_name']; ?></td>
-          <td><?php echo $value['department']; ?></td>
-          <td><?php echo $value['roll']; ?></td>
-          <td><?php echo $value['semester']; ?></td>
+          <td><?php echo $students['id']; ?></td>
+          <td><?php echo $students['student_image']; ?></td>
+          <td><?php echo $students['student_name']; ?></td>
+          <td><?php echo $students['department']; ?></td>
+          <td><?php echo $students['roll']; ?></td>
+          <td><?php echo $students['semester']; ?></td>
           <td class="td-hover"> 
-            <a href="view.php?id=1" class="btn btn-sm btn-info">View</a>
-            <a href="edit.php?id=1" class="btn btn-sm btn-warning">Edit</a>
+            <a href="view.php?id=<?php echo $students['id'];?>" class="btn btn-sm btn-info">View</a>
+            <a href="edit.php?id=<?php echo $students['id']; ?>" class="btn btn-sm btn-warning">Edit</a>
             <a href="delete.php?id=1" class="btn btn-sm btn-danger">Delete</a>
           </td>
         </tr>

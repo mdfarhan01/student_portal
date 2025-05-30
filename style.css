@@ -58,7 +58,7 @@ td {
   }
 
   .formbold-form-title {
-    margin-bottom: 30px;
+    margin-bottom: 13px;
   }
   .formbold-form-title h2 {
     font-weight: 600;
@@ -84,7 +84,7 @@ td {
   .formbold-form-input {
     text-align: left;
     width: 100%;
-    padding: 13px 22px;
+    padding: 5px 22px;
     border-radius: 5px;
     border: 1px solid #dde3ec;
     background: #ffffff;

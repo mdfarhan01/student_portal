@@ -29,7 +29,10 @@ $studnets = $get_data[0]; // Assuming you want to view the first book's details
   <div class="container py-5">
     <div class="card p-4 shadow-sm">
       <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-6">
+          <img src="<?php echo $studnets['student_image']; ?>" alt="img">
+        </div>
+        <div class="col-md-6">
           <h3>Student Portal</h3>
           <p><strong>Student ID:</strong> <?php echo $studnets['id'];?>  </p>
           <p><strong>Student Name:</strong> <?php echo $studnets['student_name'];?> </p>

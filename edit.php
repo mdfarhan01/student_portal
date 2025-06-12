@@ -18,6 +18,9 @@ $get_data = mysqli_fetch_all($data, MYSQLI_ASSOC);
 $student = $get_data[0]; // Assuming you want to edit the first student's details
 
 
+
+
+
 // echo "<pre>";
 // print_r($student);
 // echo "</pre>";
@@ -34,10 +37,8 @@ $student = $get_data[0]; // Assuming you want to edit the first student's detail
     <h1 class="heading">Student Portal</h1>
     <form action="update.php" method="POST" enctype="multipart/form-data">
 
-    <div class="formbold-form-title">
-      <label class="formbold-form-label" for="student_name">Student Id</label>
-      <input type="text" name="student"value="<?php echo $student['id'] ?>"class="formbold-form-input" required />
-    </div>
+
+    <input type="hidden" name="id" value="<?php echo $student['id'] ?>" />
 
     <div class="formbold-form-title">
       <label class="formbold-form-label" for="student_name">Student Name</label>

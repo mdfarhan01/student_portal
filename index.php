@@ -38,7 +38,7 @@ require_once 'bd-connection.php'; // Include database connection
     </div>
     <table class="table table-hover table-bordered bg-white shadow-sm">
 
-      <thead class="table-light">
+      <thead class="table-light text-center">
         <tr>
             <th>Student Id</th>
             <th>Student Image</th>
@@ -50,10 +50,10 @@ require_once 'bd-connection.php'; // Include database connection
         </tr>
       </thead>
       <?php foreach($data as $students) : ?> 
-      <tbody>
+      <tbody class="text-center">
         <tr >
           <td><?php echo $students['id']; ?></td>
-          <td><?php echo $students['student_image']; ?></td>
+          <td class="images"><img src="<?php echo $students['student_image']; ?>"></td>
           <td><?php echo $students['student_name']; ?></td>
           <td><?php echo $students['department']; ?></td>
           <td><?php echo $students['roll']; ?></td>
@@ -61,7 +61,7 @@ require_once 'bd-connection.php'; // Include database connection
           <td class="td-hover"> 
             <a href="view.php?id=<?php echo $students['id'];?>" class="btn btn-sm btn-info">View</a>
             <a href="edit.php?id=<?php echo $students['id']; ?>" class="btn btn-sm btn-warning">Edit</a>
-            <a href="delete.php?id=1" class="btn btn-sm btn-danger">Delete</a>
+            <a href="delete.php?id=<?php echo $students['id']?>" class="btn btn-sm btn-danger">Delete</a>
           </td>
         </tr>
       </tbody>

@@ -165,3 +165,21 @@ td {
     margin-bottom: 20px;
     text-transform: uppercase;
   }
+
+
+.images img{
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #0B5ED7;
+}
+
+
+.col-md-6 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  padding: 10px 30px;
+}

@@ -34,7 +34,7 @@ require_once 'bd-connection.php'; // Include database connection
   <div class="container py-5">
     <div class="main_div justify-content-between align-items-center mb-4">
     <div class="d-flex justify-content-start align-items-center mb-4">
-      <h1 class="h3">📚 Student List</h1>
+      <h1 class="h3">Student List</h1>
     </div>
     <div class="d-flex justify-content-end align-items-center mb-4 ">
       <a href="create.php" class="btn btn-primary mx-1">+ Add New Student</a>

@@ -17,7 +17,7 @@ require_once 'bd-connection.php'; // Include database connection
   if (!$is_connect) {
       die("Connection failed: " . mysqli_connect_error());
   }
-  $sql = "SELECT * FROM `student_portal`";
+  $sql = "SELECT student_portal.*,semester.name as semester_name  FROM `student_portal` JOIN `semester` ON student_portal.semester = semester.id";
   $data = $connect->query($sql);
   $get_data = mysqli_fetch_all($data,);
   
@@ -37,8 +37,9 @@ require_once 'bd-connection.php'; // Include database connection
       <h1 class="h3">Student List</h1>
     </div>
     <div class="d-flex justify-content-end align-items-center mb-4 ">
-      <a href="create.php" class="btn btn-primary mx-1">+ Add New Student</a>
-      <a href="create-semester.php" class="btn btn-info mx-1">+ Add New Semester</a>    
+      <a href="create.php" class="btn btn-primary mx-1">+ Add Student</a>
+      <a href="create-semester.php" class="btn btn-info mx-1">+ Add Semester</a>    
+      <a href="gender.php" class="btn btn-primary mx-1">+ Add Gender</a>    
     </div>
     </div>
     <table class="table table-hover table-bordered bg-white shadow-sm">
@@ -62,7 +63,7 @@ require_once 'bd-connection.php'; // Include database connection
           <td><?php echo $students['student_name']; ?></td>
           <td><?php echo $students['department']; ?></td>
           <td><?php echo $students['roll']; ?></td>
-          <td><?php echo $students['semester']; ?></td>
+          <td><?php echo $students['semester_name']; ?></td>
           <td class="td-hover"> 
             <a href="view.php?id=<?php echo $students['id'];?>" class="btn btn-sm btn-info">View</a>
             <a href="edit.php?id=<?php echo $students['id']; ?>" class="btn btn-sm btn-warning">Edit</a>

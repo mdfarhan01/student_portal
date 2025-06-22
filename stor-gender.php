@@ -9,7 +9,7 @@ require_once 'bd-connection.php';
 
 
 <?php 
-$semester_name = $_POST['semster_name'] ?? '';
+$gender = $_POST['gender'] ?? '';
 
 // echo "<pre>";
 // print_r($_POST);
@@ -17,7 +17,7 @@ $semester_name = $_POST['semster_name'] ?? '';
 
 
 if($is_connect = true){
-    $sql = "INSERT INTO `semester`(`name`) VALUES ('$semester_name')";
+    $sql = "INSERT INTO `gender`(`gender`) VALUES ('$gender')";
     if($connect->query($sql) === TRUE){
         header("Location: index.php");
     } else {

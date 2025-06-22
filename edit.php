@@ -18,6 +18,18 @@ $get_data = mysqli_fetch_all($data, MYSQLI_ASSOC);
 $student = $get_data[0]; // Assuming you want to edit the first student's details
 
 
+if($is_connect = true){
+  $sql = "SELECT * FROM `semester`";
+  $data_semester = $connect->query($sql);
+  $get_data_semester = mysqli_fetch_all($data_semester, MYSQLI_ASSOC);
+}
+
+
+if($is_connect = true){
+  $sql = "SELECT * FROM `gender`";
+  $data_gender = $connect->query($sql);
+  $get_data_gender = mysqli_fetch_all($data_gender, MYSQLI_ASSOC);
+}
 
 
 
@@ -62,11 +74,10 @@ $student = $get_data[0]; // Assuming you want to edit the first student's detail
 
     <div class="formbold-form-title">
       <label class="formbold-form-label" for="gender">Gender</label>
-      <select name="gender" id="gender" value="<?php echo $student['gender'] ?>"  class="formbold-form-input" required>
-        <option value="">Select</option>
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-        <option value="Other">Other</option>
+      <select name="gender" id="" class="formbold-form-input" required>
+        <?php foreach($get_data_gender as $gender ) :'' ?>
+          <option  value="<?php echo $gender['id']; ?>"><?php echo $gender['gender']; ?></option>
+        <?php endforeach; ?>
       </select>
     </div>
 
@@ -82,7 +93,11 @@ $student = $get_data[0]; // Assuming you want to edit the first student's detail
 
     <div class="formbold-form-title">
       <label class="formbold-form-label" for="semester">Semester</label>
-      <input type="text" name="semester" id="semester" value="<?php echo $student['semester'] ?>" class="formbold-form-input" required />
+      <select name="semester" id="" class="formbold-form-input" required>
+        <?php foreach($get_data_semester as $semester ) :'' ?>
+          <option <?php echo $get_data_gender['id'] == $student['semester'] ? 'selected' : '' ?> selected value="<?php echo $semester['id']; ?>"><?php echo $semester['name']; ?></option>
+        <?php endforeach; ?>
+      </select>
     </div>
 
     <div class="formbold-form-title">

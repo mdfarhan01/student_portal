@@ -18,7 +18,11 @@ $data =  $connect->query($sql);
 $get_data = mysqli_fetch_all($data, MYSQLI_ASSOC);
 $studnets = $get_data[0]; // Assuming you want to view the first book's details
 
-
+if($is_connect = true){
+  $sql = "SELECT * FROM `semester`";
+  $data_semester = $connect->query($sql);
+  $get_data_semester = mysqli_fetch_all($data_semester, MYSQLI_ASSOC);
+}
 
 // echo "<pre>";
 // print_r($studnets);
@@ -42,7 +46,7 @@ $studnets = $get_data[0]; // Assuming you want to view the first book's details
           <p><strong>Gender: </strong> <?php echo $studnets['gender'];?> </p>
           <p><strong>Address: </strong><?php echo $studnets['address'];?> </p>
           <p><strong>Department: </strong> <?php echo $studnets['department'];?> </p>
-          <p><strong>Semester: </strong> <?php echo $studnets['semester'];?> </p>
+          <p><strong>Semester: </strong> <?php echo $studnets[''];?> </p>
           <p><strong>Roll Number: </strong> <?php echo $studnets['roll'];?> </p>
           <p><strong>Student Image: </strong> </p>
           <a href="index.php" class="btn btn-secondary mt-3">← Back to List</a>

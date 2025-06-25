@@ -91,6 +91,7 @@ if($is_connect = true){
       <input type="file" name="student_image" id="student_image" class="formbold-form-input" accept="image/*" required />
     </div>
       <button type="submit" class="formbold-btn">Register Now</button>
+      <a href="index.php" class="btn btn-primary mx-1">← Back to List</a>
     </form>
   </div>
 </div>

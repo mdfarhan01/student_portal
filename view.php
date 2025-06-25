@@ -13,16 +13,18 @@ require_once 'bd-connection.php'; // Include database connection
 <?php 
 
 $id = $_GET['id']; // Get the student ID from the URL parameter
-$sql = "SELECT * FROM `student_portal` WHERE id = " . $_GET['id']; // Example student ID from URL parameter
-$data =  $connect->query($sql);
-$get_data = mysqli_fetch_all($data, MYSQLI_ASSOC);
-$studnets = $get_data[0]; // Assuming you want to view the first book's details
+$sql = "SELECT student_portal.*, 
+               semester.name AS semester_name, 
+               gender.gender AS gender_name 
+        FROM student_portal 
+        JOIN semester ON student_portal.semester = semester.id 
+        JOIN gender ON student_portal.gender = gender.id 
+        WHERE student_portal.id = $id";
 
-if($is_connect = true){
-  $sql = "SELECT * FROM `semester`";
-  $data_semester = $connect->query($sql);
-  $get_data_semester = mysqli_fetch_all($data_semester, MYSQLI_ASSOC);
-}
+$data = $connect->query($sql);
+$get_data = mysqli_fetch_all($data, MYSQLI_ASSOC);
+$student = $get_data[0];
+
 
 // echo "<pre>";
 // print_r($studnets);
@@ -34,25 +36,25 @@ if($is_connect = true){
     <div class="card p-4 shadow-sm">
       <div class="row">
         <div class="col-md-6">
-          <img src="<?php echo $studnets['student_image']; ?>" alt="img">
+          <img src="<?php echo $student['student_image']; ?>" alt="img" class="img-fluid">
         </div>
         <div class="col-md-6">
           <h3>Student Portal</h3>
-          <p><strong>Student ID:</strong> <?php echo $studnets['id'];?>  </p>
-          <p><strong>Student Name:</strong> <?php echo $studnets['student_name'];?> </p>
-          <p><strong>Email: </strong><?php echo $studnets['email'];?> </p>
-          <p><strong>Phone Number:</strong> <?php echo  $studnets['phone'];?> </p>
-          <p><strong>Date of Birth:</strong> <?php echo $studnets['date_of_birth'];?> </p>
-          <p><strong>Gender: </strong> <?php echo $studnets['gender'];?> </p>
-          <p><strong>Address: </strong><?php echo $studnets['address'];?> </p>
-          <p><strong>Department: </strong> <?php echo $studnets['department'];?> </p>
-          <p><strong>Semester: </strong> <?php echo $studnets[''];?> </p>
-          <p><strong>Roll Number: </strong> <?php echo $studnets['roll'];?> </p>
-          <p><strong>Student Image: </strong> </p>
+          <p><strong>Student ID:</strong> <?php echo $student['id']; ?></p>
+          <p><strong>Student Name:</strong> <?php echo $student['student_name']; ?></p>
+          <p><strong>Email:</strong> <?php echo $student['email']; ?></p>
+          <p><strong>Phone Number:</strong> <?php echo $student['phone']; ?></p>
+          <p><strong>Date of Birth:</strong> <?php echo $student['date_of_birth']; ?></p>
+          <p><strong>Gender:</strong> <?php echo $student['gender_name']; ?></p>
+          <p><strong>Address:</strong> <?php echo $student['address']; ?></p>
+          <p><strong>Department:</strong> <?php echo $student['department']; ?></p>
+          <p><strong>Semester:</strong> <?php echo $student['semester_name']; ?></p>
+          <p><strong>Roll Number:</strong> <?php echo $student['roll']; ?></p>
           <a href="index.php" class="btn btn-secondary mt-3">← Back to List</a>
         </div>
       </div>
     </div>
   </div>
 </body>
+
 </html>

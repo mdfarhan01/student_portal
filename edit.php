@@ -69,14 +69,16 @@ if($is_connect = true){
 
     <div class="formbold-form-title">
       <label class="formbold-form-label" for="date_of_birth">Date of Birth</label>
-      <input type="date" name="date_of_birth" id="date_of_birth" value="<?php echo $student['date_of_birth'] ?>" class="formbold-form-input" required />
-    </div>
+        <input type="date" name="date_of_birth" id="date_of_birth" value="<?php echo date('Y-m-d', strtotime($student['date_of_birth'])); ?>" class="formbold-form-input" required />
+       </div>
 
     <div class="formbold-form-title">
       <label class="formbold-form-label" for="gender">Gender</label>
-      <select name="gender" id="" class="formbold-form-input" required>
-        <?php foreach($get_data_gender as $gender ) :'' ?>
-          <option  value="<?php echo $gender['id']; ?>"><?php echo $gender['gender']; ?></option>
+      <select name="gender" class="formbold-form-input" required>
+        <?php foreach($get_data_gender as $gender): ?>
+          <option value="<?php echo $gender['id']; ?>" <?php echo $gender['id'] == $student['gender'] ? 'selected' : ''; ?>>
+            <?php echo $gender['gender']; ?>
+          </option>
         <?php endforeach; ?>
       </select>
     </div>
@@ -93,9 +95,11 @@ if($is_connect = true){
 
     <div class="formbold-form-title">
       <label class="formbold-form-label" for="semester">Semester</label>
-      <select name="semester" id="" class="formbold-form-input" required>
-        <?php foreach($get_data_semester as $semester ) :'' ?>
-          <option <?php echo $get_data_gender['id'] == $student['semester'] ? 'selected' : '' ?> selected value="<?php echo $semester['id']; ?>"><?php echo $semester['name']; ?></option>
+      <select name="semester" class="formbold-form-input" required>
+        <?php foreach($get_data_semester as $semester): ?>
+          <option value="<?php echo $semester['id']; ?>" <?php echo $semester['id'] == $student['semester'] ? 'selected' : ''; ?>>
+            <?php echo $semester['name']; ?>
+          </option>
         <?php endforeach; ?>
       </select>
     </div>
@@ -105,13 +109,29 @@ if($is_connect = true){
       <input type="text" name="roll" id="roll" value="<?php echo $student['roll'] ?>" class="formbold-form-input" required />
     </div>
 
-    <div class="formbold-form-title">
-      <label class="formbold-form-label" for="student_image">Student Image</label>
-      <input type="file" name="student_image" id="student_image" class="formbold-form-input" accept="image/*" required />
-    </div>
+
+      <div class="formbold-form-title">
+        <label class="formbold-form-label" for="student_image">Student Image</label>
+        <!-- Show current image preview -->
+        <div style="margin-bottom:10px;">
+          <img id="imagePreview" src="<?php echo $student['student_image']; ?>" alt="Current Image" width="150">
+        </div>
+        <input type="file" name="student_image" id="student_image" class="formbold-form-input" accept="image/*" onchange="previewImage(event)" />
+      </div>
+
       <button type="submit" class="formbold-btn">Update Now</button>
+      <a href="index.php" class="btn btn-primary mx-1">← Back to List</a>
     </form>
   </div>
 </div>
 </body>
 </html>
+
+
+
+<script>
+  function previewImage(event) {
+    const image = document.getElementById('imagePreview');
+    image.src = URL.createObjectURL(event.target.files[0]);
+  }
+</script>
